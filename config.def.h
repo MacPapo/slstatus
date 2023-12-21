@@ -6,6 +6,9 @@ const unsigned int interval = 1000;
 /* text to show if no value can be retrieved */
 static const char unknown_str[] = "n/a";
 
+/* network interface */
+static const char network_card_name[] = "enp5s0";
+
 /* maximum output string length */
 #define MAXLEN 2048
 
@@ -65,11 +68,13 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-        { ipv4,       "IPV4: %s │ ",        "enp5s0" },
-        { cpu_freq,   "FREQ: %3sz │ ",       NULL },
-        { cpu_perc,   "CPU: %3s%% │ ",       NULL },
-        { ram_perc,   "RAM: %3s%% │ ",       NULL },
-        { swap_perc,  "SWAP: %3s%% │ ",      NULL },
-        { uptime,     "UP: %s │ ",           NULL },
-	{ datetime,   "%s ",              "%F %T" },
+        { ipv4,       "IPV4: %s ",          network_card_name },
+        { netspeed_tx, "[UP: %8s] ",        network_card_name },
+        { netspeed_rx, "[DW: %8s] | ",      network_card_name },
+        { cpu_freq,   "FREQ: %3sz │ ",                   NULL },
+        { cpu_perc,   "CPU: %3s%% │ ",                   NULL },
+        { ram_perc,   "RAM: %3s%% │ ",                   NULL },
+        { swap_perc,  "SWAP: %3s%% │ ",                  NULL },
+        { uptime,     "UP: %s │ ",                       NULL },
+	{ datetime,   "%s ",                          "%F %T" },
 };
