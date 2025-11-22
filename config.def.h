@@ -6,9 +6,6 @@ const unsigned int interval = 1000;
 /* text to show if no value can be retrieved */
 static const char unknown_str[] = "n/a";
 
-/* network interface */
-static const char network_card_name[] = "enp5s0";
-
 /* maximum output string length */
 #define MAXLEN 2048
 
@@ -59,6 +56,7 @@ static const char network_card_name[] = "enp5s0";
  *                                                     thermal zone on FreeBSD
  *                                                     (tz0, tz1, etc.)
  * uid                 UID of current user             NULL
+ * up                  interface is running            interface name (eth0)
  * uptime              system uptime                   NULL
  * username            username of current user        NULL
  * vol_perc            OSS/ALSA volume in percent      mixer file (/dev/mixer)
@@ -68,13 +66,6 @@ static const char network_card_name[] = "enp5s0";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-        { ipv4,       "IPV4: %s ",          network_card_name },
-        { netspeed_tx, "[UP: %8s] ",        network_card_name },
-        { netspeed_rx, "[DW: %8s] | ",      network_card_name },
-        { cpu_freq,   "FREQ: %3sz │ ",                   NULL },
-        { cpu_perc,   "CPU: %3s%% │ ",                   NULL },
-        { ram_perc,   "RAM: %3s%% │ ",                   NULL },
-        { swap_perc,  "SWAP: %3s%% │ ",                  NULL },
-        { uptime,     "UP: %s │ ",                       NULL },
-	{ datetime,   "%s ",                          "%F %T" },
+	{ uptime,   "UP (%s) ",        NULL },
+	{ datetime, "%s",           "%F %T" },
 };
